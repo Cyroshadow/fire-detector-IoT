@@ -1,0 +1,12 @@
+.status-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  white-space: nowrap;
+  gap: 0.5rem;
+}
+
+.status-wrapper > h1 {
+  font-weight: normal;
+  font-size: 1.25rem;
+}

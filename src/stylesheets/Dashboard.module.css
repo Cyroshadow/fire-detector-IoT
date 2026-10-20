@@ -1,0 +1,13 @@
+.dashboard-wrapper {
+  width: max(30dvw, 60%);
+  height: max(24dvh, 20%);
+  background-color: var(--bg);
+  border: solid var(--bg-light) 4px;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 0px auto 0px auto
+}
+
+.dashboard-label {
+  color: var(--text);
+}
