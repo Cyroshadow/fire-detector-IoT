@@ -1,3 +1,8 @@
-.test {
-  color: blue
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem;
+  width: 100dvw;
+  height: 100dvh;
 }

@@ -1,5 +1,9 @@
 import styles from './App.module.css'
+import Dashboard from './components/Dashboard.tsx'
+
 
 export default function App() {
-  return <p className={styles.test}>Hi</p>
-}
+  return (<div className={styles['app-wrapper']}>
+    <Dashboard />
+  </div>)
+} 

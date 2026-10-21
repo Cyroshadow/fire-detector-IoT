@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+:root {
+  --bg-light: hsl(0 0 15);
+  --bg: hsl(0 0 10);
+  --bg-dark: hsl(0 0 5);
+  --text: hsl(0 0 100);
+  --safe: hsl(116, 99%, 27%);
+   color: var(--text);
+}
+
+body {
+  background-color: var(--bg-dark);
+}
