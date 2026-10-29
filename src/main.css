@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900');
+
 * {
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
+  font-family: 'Montserrat';  
 }
 
 :root {
@@ -10,6 +14,10 @@
   --bg-dark: hsl(0 0 5);
   --text: hsl(0 0 100);
   --safe: hsl(116, 99%, 27%);
+  --critical: hsl(0, 91%, 36%);
+  --hazard: hsl(19, 100%, 37%);
+  --caution: hsl(26, 91%, 36%);
+  --monitor: hsl(50, 100%, 40%);
    color: var(--text);
 }
 
