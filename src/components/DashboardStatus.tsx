@@ -1,21 +1,12 @@
-import { House, Square } from "lucide-react"
 import styles from '../stylesheets/DashboardStatus.module.css'
+import StatusIcons from './StatusIcons'
 
-export default function DashboardStatus({status}: {status:string}) {
-  
-  let iconSize = 16
-  let centerCoords = (24 - iconSize)/2
+export default function DashboardStatus({ status, id = '', type }: { status: string, id?: string, type: string }) {
 
   return (
-  <div className={styles['status-wrapper']}>
-    <Square size={40} color={status} fill={status}>
-      <House
-        size={iconSize}
-        color={'var(--bg)'}
-        x={centerCoords}
-        y={centerCoords} />
-    </Square>
-    <h1>House Status: {'OK'}</h1>
-  </div>
+    <div className={styles['status-wrapper']} id={id}>
+      <StatusIcons size={16} status={status} iconType={type}/>
+      <h1>{type} {'OK'}</h1>
+    </div>
   )
 }
