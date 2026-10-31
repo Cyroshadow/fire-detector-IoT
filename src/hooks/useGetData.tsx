@@ -26,10 +26,14 @@ export default function useGetSensorReads() {
       } catch (err) {
         console.log("Error")
       }
-
+      console.log("call made")
     }
     getRead()
 
+    const makeCall = setInterval(getRead, 20000)
+    return () => {
+      clearInterval(makeCall)
+    }
   }, [])
 
   return {
