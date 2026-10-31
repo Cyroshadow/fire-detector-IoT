@@ -1,48 +1,52 @@
 import { useState } from 'react'
 import styles from '../stylesheets/Dashboard.module.css'
 import DashboardStatus from './DashboardStatus'
-import getSensorReads from '../hooks/useGetData'
 import useGetSensorReads from '../hooks/useGetData'
+
+
+const colorMap: Record<string, string> = {
+  'critical': 'var(--critical)',
+  'hazard': 'var(--hazard)',
+  'caution': 'var(--caution)',
+  'monitor': 'var(--monitor)',
+  'safe': 'var(--safe)'
+}
+
 
 export default function Dashboard() {
 
   const { gas,
-    photoelectric,
-    ultraviolet,
-    infrared,
     latentTemp,
     surfaceTemp,
+    ultraviolet,
+    infrared,
+    photoelectric
   } = useGetSensorReads()
-
+  console.log(gas, latentTemp, surfaceTemp, ultraviolet, infrared, photoelectric)
   const [status, setStatus] = useState('var(--safe)')
   let overallStatus = 'safe'
 
-  let highSurfaceTemp: boolean = surfaceTemp < 70;
-  let medSurfaceTemp: boolean = surfaceTemp < 40;
-  let lowSurfaceTemp: boolean = surfaceTemp < 20;
-  let highGas: boolean = gas < 600;
-  let medGas: boolean = gas < 300;
-  let lowGas: boolean = gas < 100;
+  const surfaceTempThresholds = [20, 40, 70]
+  const gasThresholds = [100, 300, 600]
 
+  function getLevel(level: Number, thresholds: Array<Number>) {
+    if (level >= thresholds[2]) return 'critical'
+    if (level >= thresholds[1] && level < thresholds[2]) return 'caution'
+    if (level >= thresholds[0] && level < thresholds[1]) return 'safe'
 
-  const colorMap: Record<string, string> = {
-    'critical': 'var(--critical)',
-    'hazard': 'var(--hazard)',
-    'caution': 'var(--caution)',
-    'monitor': 'var(--monitor)',
-    'safe': 'var(--safe)'
+    return 'safe'
   }
 
   return (<>
     <div className={styles['dashboard-wrapper']} style={{ borderColor: colorMap[overallStatus] }}>
       <DashboardStatus status={status} id={styles['overall-status']} type={'House'} />
-      <DashboardStatus status={status} type={'Gas'} />
+      <DashboardStatus status={colorMap[getLevel(gas, gasThresholds)]} type={'Gas'} />
       <DashboardStatus status={status} type={'Photoelectric'} />
       <DashboardStatus status={status} type={'Infrared'} />
       <DashboardStatus status={status} type={'LatentTemp'} />
       <DashboardStatus status={status} type={'Ultraviolet'} />
-      <DashboardStatus status={status} type={'SurfaceTemp'} />
-    </div >
+      <DashboardStatus status={colorMap[getLevel(surfaceTemp, surfaceTempThresholds)]} type={'SurfaceTemp'} />
+    </div>
     <label className={styles['dashboard-label']}>Smoke Detector 8000 Dashboard</label>
   </>)
 }
